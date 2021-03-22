@@ -3,6 +3,9 @@ FROM osrf/ros:melodic-desktop
 
 RUN ls
 
+RUN echo $GITHUB_WORKSPACE
+RUN echo $GITHUB_WORKSPACE/cartographer
+
 WORKDIR $GITHUB_WORKSPACE/cartographer
 
 RUN ls
