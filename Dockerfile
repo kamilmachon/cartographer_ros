@@ -1,7 +1,11 @@
 
 FROM osrf/ros:melodic-desktop
 
+RUN ls
+
 WORKDIR $GITHUB_WORKSPACE/cartographer
+
+RUN ls
 
 ARG cc
 ARG cxx
