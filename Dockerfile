@@ -1,4 +1,4 @@
-# Copyright 2018 The Cartographer Authors
+# Copyright 2020 The Cartographer Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,6 +11,35 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+FROM ubuntu:bionic
+
+ARG cc
+ARG cxx
+
+# Set the preferred C/C++ compiler toolchain, if given (otherwise default).
+ENV CC=$cc
+ENV CXX=$cxx
+
+# This base image doesn't ship with sudo, apt-utils. tzdata is installed here to avoid hanging later
+# when it would wait for user input. 
+RUN apt-get update && apt-get install -y sudo apt-utils tzdata && rm -rf /var/lib/apt/lists/*
+
+COPY scripts/install_debs_cmake.sh cartographer/scripts/
+RUN cartographer/scripts/install_debs_cmake.sh && rm -rf /var/lib/apt/lists/*
+COPY scripts/install_abseil.sh cartographer/scripts/
+RUN cartographer/scripts/install_abseil.sh && rm -rf /var/lib/apt/lists/*
+COPY scripts/install_proto3.sh cartographer/scripts/
+RUN cartographer/scripts/install_proto3.sh && rm -rf protobuf
+COPY scripts/install_grpc.sh cartographer/scripts/
+RUN cartographer/scripts/install_grpc.sh && rm -rf grpc
+COPY scripts/install_async_grpc.sh cartographer/scripts/
+RUN cartographer/scripts/install_async_grpc.sh && rm -rf async_grpc
+COPY scripts/install_prometheus_cpp.sh cartographer/scripts/
+RUN cartographer/scripts/install_prometheus_cpp.sh && rm -rf prometheus-cpp
+COPY . cartographer
+RUN cartographer/scripts/install_cartographer_cmake_with_grpc.sh && rm -rf cartographer
+
 
 FROM osrf/ros:melodic-desktop
 
