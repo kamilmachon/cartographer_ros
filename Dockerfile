@@ -3,12 +3,11 @@ FROM osrf/ros:melodic-desktop
 
 
 
-WORKDIR $GITHUB_WORKSPACE/cartographer
+WORKDIR /home/runner
 
-RUN pwd
-RUN echo $GITHUB_WORKSPACE
-RUN echo $GITHUB_WORKSPACE/cartographer
 RUN ls
+
+RUN cd work && ls
 
 ARG cc
 ARG cxx
