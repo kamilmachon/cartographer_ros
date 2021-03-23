@@ -18,7 +18,7 @@ RUN ls
 
 
 #COPY --chown=husarion /github/workspace/ /home/husarion/cartographer_workspace/
-RUN cd workspace && ls
+#RUN cd workspace && ls
 # This base image doesn't ship with sudo, apt-utils. tzdata is installed here to avoid hanging later
 # when it would wait for user input. 
 #RUN apt-get update && apt-get install -y sudo apt-utils tzdata && rm -rf /var/lib/apt/lists/*
