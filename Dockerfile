@@ -3,7 +3,7 @@ FROM osrf/ros:melodic-desktop
 
 
 
-WORKDIR /home/runner
+WORKDIR /home
 
 RUN ls
 
