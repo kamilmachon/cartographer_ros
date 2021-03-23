@@ -12,11 +12,11 @@ ENV CXX=$cxx
 
 # This base image doesn't ship with sudo, apt-utils. tzdata is installed here to avoid hanging later
 # when it would wait for user input. 
-RUN apt-get update && apt-get install -y sudo apt-utils tzdata && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && apt-get install -y sudo apt-utils tzdata && rm -rf /var/lib/apt/lists/*
 
 ENV cartographer_prefix=/home/runner/work/cartographer_ros/cartographer_ros/cartographer
 
-COPY $cartographer_prefix/scripts/install_debs_cmake.sh cartographer/scripts/
+COPY /home/runner/work/cartographer_ros/cartographer_ros/cartographer/scripts/install_debs_cmake.sh cartographer/scripts/
 RUN cartographer/scripts/install_debs_cmake.sh && rm -rf /var/lib/apt/lists/*
 COPY $cartographer_prefix/scripts/install_abseil.sh cartographer/scripts/
 RUN cartographer/scripts/install_abseil.sh && rm -rf /var/lib/apt/lists/*
