@@ -40,7 +40,7 @@ ARG github_token
 # Bionic's base image doesn't ship with sudo.
 RUN apt-get update && apt-get install -y sudo
 
-ENV cartographer_ros_prefix=cartographer
+ENV cartographer_ros_prefix=cartographer_ros
 
 # First, we invalidate the entire cache if cartographer-project/cartographer has
 # changed. This file's content changes whenever master changes. See:
