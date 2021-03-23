@@ -1,13 +1,7 @@
 
 FROM osrf/ros:melodic-desktop
 
-
-
-WORKDIR /home
-
 RUN ls
-
-RUN cd work && ls
 
 ARG cc
 ARG cxx
