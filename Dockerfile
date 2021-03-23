@@ -1,7 +1,9 @@
 
 FROM osrf/ros:melodic-desktop
 
-RUN ls
+SHELL ["/bin/bash", "-c"]
+
+RUN useradd -ms /bin/bash husarion && usermod -aG sudo husarion && echo 'husarion     ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 ARG cc
 ARG cxx
@@ -10,6 +12,8 @@ ARG cxx
 ENV CC=$cc
 ENV CXX=$cxx
 
+COPY --chown=husarion /home/runner/work/cartographer_ros/cartographer_ros /home/husarion/cartographer_workspace/
+RUN cd workspace && ls
 # This base image doesn't ship with sudo, apt-utils. tzdata is installed here to avoid hanging later
 # when it would wait for user input. 
 #RUN apt-get update && apt-get install -y sudo apt-utils tzdata && rm -rf /var/lib/apt/lists/*
