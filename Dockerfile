@@ -12,7 +12,7 @@ ARG cxx
 ENV CC=$cc
 ENV CXX=$cxx
 
-RUN echo dupa
+RUN echo dupadfg
 
 RUN ls
 
