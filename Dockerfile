@@ -91,8 +91,6 @@ RUN cartographer_ros/scripts/install.sh --pkg cartographer_rviz && \
         --catkin-make-args run_tests && \
     cartographer_ros/scripts/catkin_test_results.sh build_isolated/cartographer_rviz
 
-COPY $cartographer_ros_prefix/scripts/ros_entrypoint.sh /
-
 RUN rm -rf /var/lib/apt/lists/*
 # A BTRFS bug may prevent us from cleaning up these directories.
 # https://btrfs.wiki.kernel.org/index.php/Problem_FAQ#I_cannot_delete_an_empty_directory
