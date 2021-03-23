@@ -14,19 +14,21 @@ ENV CXX=$cxx
 # when it would wait for user input. 
 RUN apt-get update && apt-get install -y sudo apt-utils tzdata && rm -rf /var/lib/apt/lists/*
 
-COPY /home/runner/work/cartographer/cartographer/scripts/install_debs_cmake.sh cartographer/scripts/
+ENV cartographer_prefix=/home/runner/work/cartographer_ros/cartographer_ros/cartographer/
+
+COPY $cartographer_prefix/scripts/install_debs_cmake.sh cartographer/scripts/
 RUN cartographer/scripts/install_debs_cmake.sh && rm -rf /var/lib/apt/lists/*
-COPY /home/runner/work/cartographer/cartographer/scripts/install_abseil.sh cartographer/scripts/
+COPY $cartographer_prefix/scripts/install_abseil.sh cartographer/scripts/
 RUN cartographer/scripts/install_abseil.sh && rm -rf /var/lib/apt/lists/*
-COPY /home/runner/work/cartographer/cartographer/scripts/install_proto3.sh cartographer/scripts/
+COPY $cartographer_prefix/scripts/install_proto3.sh cartographer/scripts/
 RUN cartographer/scripts/install_proto3.sh && rm -rf protobuf
-COPY /home/runner/work/cartographer/cartographer/scripts/install_grpc.sh cartographer/scripts/
+COPY $cartographer_prefixscripts/install_grpc.sh cartographer/scripts/
 RUN cartographer/scripts/install_grpc.sh && rm -rf grpc
-COPY /home/runner/work/cartographer/cartographer/scripts/install_async_grpc.sh cartographer/scripts/
+COPY $cartographer_prefixscripts/install_async_grpc.sh cartographer/scripts/
 RUN cartographer/scripts/install_async_grpc.sh && rm -rf async_grpc
-COPY /home/runner/work/cartographer/cartographer/scripts/install_prometheus_cpp.sh cartographer/scripts/
+COPY $cartographer_prefixscripts/install_prometheus_cpp.sh cartographer/scripts/
 RUN cartographer/scripts/install_prometheus_cpp.sh && rm -rf prometheus-cpp
-COPY /home/runner/work/cartographer/cartographer/ cartographer
+COPY $cartographer_prefix cartographer
 RUN cartographer/scripts/install_cartographer_cmake_with_grpc.sh && rm -rf cartographer
 
 
