@@ -47,7 +47,7 @@ jobs:
           push: true
           tags: kamilmachonhsrn/test
           context: /home/runner/work/cartographer_ros/cartographer_ros/
-          dockerfile: cartographer_ros/Dockerfile
+          file: cartographer_ros/Dockerfile
 
 #       - name: Build container image
 #         uses: docker/build-push-action@v2
