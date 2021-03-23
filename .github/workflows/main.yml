@@ -29,7 +29,7 @@ jobs:
           dockerfile: cartographer_ros/Dockerfile
           username: ${{ secrets.DOCKERHUB_ID }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          repository: kamilmachonhsrn/test
+          repository: kamilmachonhsrn/test:debug
           tag_with_ref: true
 
 
