@@ -54,6 +54,9 @@ COPY $cartographer_ros_prefix/scripts/prepare_catkin_workspace.sh cartographer_r
 RUN CARTOGRAPHER_VERSION=$CARTOGRAPHER_VERSION \
     cartographer_ros/scripts/prepare_catkin_workspace.sh
 
+RUN cd $cartographer_ros_prefix && ls
+RUN cd $cartographer_ros_prefix/cartographer_rviz && ls
+
 # rosdep needs the updated package.xml files to install the correct debs.
 COPY $cartographer_ros_prefix/cartographer_ros/package.xml catkin_ws/src/cartographer_ros/cartographer_ros/
 COPY $cartographer_ros_prefix/cartographer_ros_msgs/package.xml catkin_ws/src/cartographer_ros/cartographer_ros_msgs/
