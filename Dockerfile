@@ -16,8 +16,8 @@ ENV CXX=$cxx
 
 ENV cartographer_prefix=/github/workspace/cartographer
 
-COPY $cartographer_prefix/scripts/install_debs_cmake.sh cartographer/scripts/
-RUN cartographer/scripts/install_debs_cmake.sh && rm -rf /var/lib/apt/lists/*
+# COPY $cartographer_prefix/scripts/install_debs_cmake.sh cartographer/scripts/
+RUN $cartographer_prefix/scripts/install_debs_cmake.sh && rm -rf /var/lib/apt/lists/*
 COPY $cartographer_prefix/scripts/install_abseil.sh cartographer/scripts/
 RUN cartographer/scripts/install_abseil.sh && rm -rf /var/lib/apt/lists/*
 COPY $cartographer_prefix/scripts/install_proto3.sh cartographer/scripts/
