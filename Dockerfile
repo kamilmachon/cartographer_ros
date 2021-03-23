@@ -11,8 +11,13 @@ ARG cxx
 # Set the preferred C/C++ compiler toolchain, if given (otherwise default).
 ENV CC=$cc
 ENV CXX=$cxx
+
+RUN echo dupa
+
 RUN ls
-COPY --chown=husarion /github/workspace/ /home/husarion/cartographer_workspace/
+
+
+#COPY --chown=husarion /github/workspace/ /home/husarion/cartographer_workspace/
 RUN cd workspace && ls
 # This base image doesn't ship with sudo, apt-utils. tzdata is installed here to avoid hanging later
 # when it would wait for user input. 
