@@ -23,13 +23,22 @@ jobs:
         with:
           repository:  kamilmachon/cartographer
           path: cartographer
-      - name: Push to Docker Hub
+      - name: Build container image
         uses: docker/build-push-action@v1
         with:
-          dockerfile: cartographer_ros/Dockerfile
-          username: ${{ secrets.DOCKERHUB_ID }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          repository: kamilmachonhsrn/test2
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: ${{ github.repository }}/octo-image
+          tag_with_sha: true
           tag_with_ref: true
+#         - name: Push to Docker Hub
+#           uses: docker/build-push-action@v1
+#           with:
+#             dockerfile: cartographer_ros/Dockerfile
+#             username: ${{ secrets.DOCKERHUB_ID }}
+#             password: ${{ secrets.DOCKERHUB_PASSWORD }}
+#             repository: kamilmachonhsrn/test2
+#             tag_with_ref: true
 
 
