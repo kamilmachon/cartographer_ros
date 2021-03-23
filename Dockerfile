@@ -12,7 +12,7 @@ ARG cxx
 ENV CC=$cc
 ENV CXX=$cxx
 
-COPY --chown=husarion /home/runner/work/cartographer_ros/cartographer_ros /home/husarion/cartographer_workspace/
+COPY --chown=husarion /github/workspace/ /home/husarion/cartographer_workspace/
 RUN cd workspace && ls
 # This base image doesn't ship with sudo, apt-utils. tzdata is installed here to avoid hanging later
 # when it would wait for user input. 
