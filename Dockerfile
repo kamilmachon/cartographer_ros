@@ -14,23 +14,21 @@ ENV CXX=$cxx
 # when it would wait for user input. 
 RUN apt-get update && apt-get install -y sudo apt-utils tzdata && rm -rf /var/lib/apt/lists/*
 
-COPY scripts/install_debs_cmake.sh cartographer/scripts/
+COPY /home/runner/work/cartographer/cartographer/scripts/install_debs_cmake.sh cartographer/scripts/
 RUN cartographer/scripts/install_debs_cmake.sh && rm -rf /var/lib/apt/lists/*
-COPY scripts/install_abseil.sh cartographer/scripts/
+COPY /home/runner/work/cartographer/cartographer/scripts/install_abseil.sh cartographer/scripts/
 RUN cartographer/scripts/install_abseil.sh && rm -rf /var/lib/apt/lists/*
-COPY scripts/install_proto3.sh cartographer/scripts/
+COPY /home/runner/work/cartographer/cartographer/scripts/install_proto3.sh cartographer/scripts/
 RUN cartographer/scripts/install_proto3.sh && rm -rf protobuf
-COPY scripts/install_grpc.sh cartographer/scripts/
+COPY /home/runner/work/cartographer/cartographer/scripts/install_grpc.sh cartographer/scripts/
 RUN cartographer/scripts/install_grpc.sh && rm -rf grpc
-COPY scripts/install_async_grpc.sh cartographer/scripts/
+COPY /home/runner/work/cartographer/cartographer/scripts/install_async_grpc.sh cartographer/scripts/
 RUN cartographer/scripts/install_async_grpc.sh && rm -rf async_grpc
-COPY scripts/install_prometheus_cpp.sh cartographer/scripts/
+COPY /home/runner/work/cartographer/cartographer/scripts/install_prometheus_cpp.sh cartographer/scripts/
 RUN cartographer/scripts/install_prometheus_cpp.sh && rm -rf prometheus-cpp
-COPY . cartographer
+COPY /home/runner/work/cartographer/cartographer/ cartographer
 RUN cartographer/scripts/install_cartographer_cmake_with_grpc.sh && rm -rf cartographer
 
-
-WORKDIR $GITHUB_WORKSPACE/cartographer_ros
 
 ARG CARTOGRAPHER_VERSION=master
 
