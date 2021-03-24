@@ -52,6 +52,10 @@ RUN source /opt/ros/melodic/setup.bash && \
     cd /home/husarion/cartographer_ws && \
     catkin_make_isolated --install --use-ninja
 
+ENV NVIDIA_VISIBLE_DEVICES \
+    ${NVIDIA_VISIBLE_DEVICES:-all}
+ENV NVIDIA_DRIVER_CAPABILITIES \
+    ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
 
 # COPY $cartographer_prefix/scripts/install_debs_cmake.sh cartographer/scripts/
 # RUN $cartographer_prefix/scripts/install_debs_cmake.sh && rm -rf /var/lib/apt/lists/*
