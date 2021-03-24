@@ -15,11 +15,11 @@ ENV CXX=$cxx
 RUN apt-get update && apt-get install -y sudo apt-utils tzdata && rm -rf /var/lib/apt/lists/*
 
 ENV cartographer_prefix=cartographer
-COPY $cartographer_prefix/ /home/husarion/
+COPY $cartographer_prefix/ /home/husarion/cartographer
 
 
 ENV cartographer_ros_prefix=cartographer_ros
-COPY $cartographer_ros_prefix/ /home/husarion/
+COPY $cartographer_ros_prefix/ /home/husarion/cartographer_ros
 
 # COPY $cartographer_prefix/scripts/install_debs_cmake.sh cartographer/scripts/
 # RUN $cartographer_prefix/scripts/install_debs_cmake.sh && rm -rf /var/lib/apt/lists/*
