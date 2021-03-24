@@ -25,30 +25,32 @@ COPY $cartographer_ros_prefix/ /home/husarion/cartographer_ws/src/cartographer_r
 
 WORKDIR /home/husarion
 
-# # Build cartographer
-# RUN sudo apt update && \
-#     sudo apt install -y \
-#         python-rosdep \
-#         python-wstool \
-#         ninja-build \
-#         stow && \
-#     sudo rm -rf /var/lib/apt/lists/*
+# Build cartographer
+RUN sudo apt update && \
+    sudo apt install -y \
+        python-rosdep \
+        python-wstool \
+        ninja-build \
+        stow && \
+    sudo rm -rf /var/lib/apt/lists/*
 
-# RUN  cd cartographer_ws &&\ 
-#     sudo apt update && \
-#     sudo rosdep init; \
-#     rosdep update && \
-#     rosdep install --from-paths src --ignore-src --rosdistro=melodic -y 
+RUN  cd cartographer_ws &&\ 
+    sudo apt update && \
+    sudo rosdep init; \
+    rosdep update && \
+    rosdep install --from-paths src --ignore-src --rosdistro=melodic -y 
     
     
-# RUN src/cartographer/scripts/install_proto3.sh && \
-#     src/cartographer/scripts/install_abseil.sh && \
-#     sudo apt remove ros-melodic-abseil-cpp && \
-#     sudo rm -rf /var/lib/apt/lists/*
+RUN cd cartographer_ws && \
+    ls && \
+    src/cartographer/scripts/install_proto3.sh && \
+    src/cartographer/scripts/install_abseil.sh && \
+    sudo apt remove ros-melodic-abseil-cpp && \
+    sudo rm -rf /var/lib/apt/lists/*
 
-# RUN source /opt/ros/melodic/setup.bash && \
-#     cd /home/husarion/cartographer_ws && \
-#     catkin_make_isolated --install --use-ninja
+RUN source /opt/ros/melodic/setup.bash && \
+    cd /home/husarion/cartographer_ws && \
+    catkin_make_isolated --install --use-ninja
 
 
 # COPY $cartographer_prefix/scripts/install_debs_cmake.sh cartographer/scripts/
