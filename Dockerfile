@@ -1,5 +1,5 @@
 
-FROM osrf/ros:melodic-desktop
+FROM osrf/ros:melodic-desktop-full
 
 SHELL ["/bin/bash", "-c"]
 
