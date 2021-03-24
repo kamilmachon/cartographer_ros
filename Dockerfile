@@ -34,12 +34,14 @@ RUN sudo apt update && \
         stow && \
     sudo rm -rf /var/lib/apt/lists/*
 
-RUN sudo apt update && \
-    sudo rosdep init && \
-    cd cartographer_ws &&\
+RUN  cd cartographer_ws &&\ 
+    sudo apt update && \
+    sudo rosdep init; \
     rosdep update && \
-    rosdep install --from-paths src --ignore-src --rosdistro=melodic -y && \
-    src/cartographer/scripts/install_proto3.sh && \
+    rosdep install --from-paths src --ignore-src --rosdistro=melodic -y 
+    
+    
+RUN src/cartographer/scripts/install_proto3.sh && \
     src/cartographer/scripts/install_abseil.sh && \
     sudo apt remove ros-melodic-abseil-cpp && \
     sudo rm -rf /var/lib/apt/lists/*
