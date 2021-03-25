@@ -48,6 +48,8 @@ jobs:
           tags: kamilmachonhsrn/test:${{ github.event.inputs.output_tag }}
           context: /home/runner/work/cartographer_ros/cartographer_ros/
           file: cartographer_ros/Dockerfile
+          build-args: |
+                      INPUT_IMAGE_TAG=${{ github.event.inputs.cartographer_tag }}  
 
 #       - name: Build container image
 #         uses: docker/build-push-action@v2
