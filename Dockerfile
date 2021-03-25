@@ -1,5 +1,6 @@
 
-FROM osrf/ros:melodic-desktop-full
+ARG INPUT_IMAGE_TAG
+FROM osrf/ros:$INPUT_IMAGE_TAG
 
 SHELL ["/bin/bash", "-c"]
 
@@ -7,7 +8,6 @@ RUN useradd -ms /bin/bash husarion && usermod -aG sudo husarion && echo 'husario
 
 ARG cc
 ARG cxx
-
 # Set the preferred C/C++ compiler toolchain, if given (otherwise default).
 ENV CC=$cc
 ENV CXX=$cxx
