@@ -1,7 +1,15 @@
 name: Publish Docker image
-on: 
+on:
   workflow_dispatch:
     inputs:
+      target_branch_cartographer:
+        description: 'branch that will be built on the image'
+        required: true
+        default: 'master'
+      target_branch_cartographer_ros:
+        description: 'branch that will be built on the image'
+        required: true
+        default: 'master'
       cartographer_tag:
         description: 'cartographer image tag'     
         required: true
@@ -22,11 +30,13 @@ jobs:
         with:
           repository:  kamilmachon/cartographer_ros
           path: cartographer_ros/
+          ref: ${{ github.event.inputs.target_branch_cartographer_ros }}
       - name: Checkout cartographer
         uses: actions/checkout@v2
         with:
           repository:  kamilmachon/cartographer
           path: cartographer/
+          ref: ${{ github.event.inputs.target_branch_cartographer }}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
